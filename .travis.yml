@@ -23,25 +23,25 @@ before_install:
 script:
     - node --version
     - npm -version
-    - npm test
-    - npm run build
+#     - npm test
+#     - npm run build
 
-# Deploy 
-deploy:
-    provider: heroku
-    skip_cleanup: true
-    keep-history: true
-    api-key:
-        secure: $HEROKU_API_KEY
-    app: frontend-bookstore-react-sp
+# # Deploy 
+# deploy:
+#     provider: heroku
+#     skip_cleanup: true
+#     keep-history: true
+#     api-key:
+#         secure: $HEROKU_API_KEY
+#     app: frontend-bookstore-react-sp
 
-# Slack Notifications
-notifications:
-  slack:
-    template:
-      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
-    rooms:
-      - aj-vdw7889:d8sCDUQsrGFxKK0dROtUnLqm#general
-      - aj-vdw7889:d8sCDUQsrGFxKK0dROtUnLqm#frontend-react-bookstore
-    on_success: always # default: always
-    on_failure: always # default: always
+# # Slack Notifications
+# notifications:
+#   slack:
+#     template:
+#       - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
+#     rooms:
+#       - aj-vdw7889:d8sCDUQsrGFxKK0dROtUnLqm#general
+#       - aj-vdw7889:d8sCDUQsrGFxKK0dROtUnLqm#frontend-react-bookstore
+#     on_success: always # default: always
+#     on_failure: always # default: always

@@ -3,12 +3,12 @@
 # Deploy the build/ folder to production.
 [build]
     base = "frontend/"
-    command = "npm run build" 
     publish = "build/"
+    command = "npm run build" 
 
 # A redirect rule:
 # Notifies Netlify to NOT throw an error "page not found" because of React-Router.
-[redirects]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
