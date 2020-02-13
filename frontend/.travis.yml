@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+    - node
+
+sudo: true 
+
+branches:
+    only:
+        - master
+
+cache:
+    directories:
+        - node_modules
+
+before_install:
+    - cd frontend
+    
+script:
+    - node --version
+    - npm -version
+    - npm test
+    - npm run build
+
+deploy:
+    provider: heroku
+    skip_cleanup: true
+    keep-history: true
+    api-key:
+        secure: $HEROKU_API_KEY
+    app: frontend-bookstore-react-sp
