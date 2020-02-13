@@ -27,13 +27,13 @@ script:
     - npm run build
 
 # Deploy 
-# deploy:
-#     provider: heroku
-#     skip_cleanup: true
-#     keep-history: true
-#     api-key:
-#         secure: $HEROKU_API_KEY
-#     app: frontend-bookstore-react-sp
+deploy:
+    provider: heroku
+    skip_cleanup: true
+    keep-history: true
+    api-key:
+        secure: $HEROKU_API_KEY
+    app: frontend-bookstore-react-sp
 
 # Slack Notifications
 notifications:
