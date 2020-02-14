@@ -2,9 +2,14 @@ import React from "react";
 import "./App.css";
 import User from "./components/User";
 import axios from "axios";
-export const urls = "https://jsonplaceholder.typicode.com/users";
-// export const url = "http://localhost:8081/greeting";
-export const url = "https://bookstore-react-spring.herokuapp.com/api";
+export const JSON_PLACE_HOLDER_URL =
+  "https://jsonplaceholder.typicode.com/users";
+// export const LOCAL_HOST_API = "http://localhost:8082/api";
+export const REMOTE_PROD_API =
+  "https://bookstore-react-spring.herokuapp.com/api";
+
+// #### Set up a prod & local testing environment #####
+
 // const App = () => {
 class App extends React.Component {
   constructor() {
@@ -14,7 +19,7 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
-    axios.get(urls).then(response => {
+    axios.get(JSON_PLACE_HOLDER_URL).then(response => {
       console.log(response);
       const users = response.data;
       this.setState({
@@ -34,11 +39,14 @@ class App extends React.Component {
               <p data-testid="loading">Loading....</p>
             ) : (
               this.state.users.map((user, index) => (
-                <li key={index}>user: {user.name}, email: {user.email}</li>
+                <li key={index}>
+                  user: {user.name}, email: {user.email}
+                </li>
               ))
             )}
           </ul>
-          <User url={url} />
+          {/* <User url={LOCAL_HOST_API} /> */}
+          <User url={REMOTE_PROD_API} />
         </header>
       </div>
     );

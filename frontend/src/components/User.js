@@ -11,14 +11,21 @@ class User extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(this.props.url).then(response => {
-      console.log(response);
-      const users = response.data;
-      this.setState({
-        users
+    axios
+      .get(this.props.url)
+      .then(response => {
+        console.log(response);
+        const users = response.data;
+        this.setState({
+          users
+        });
+        console.log(users);
+      })
+      .catch(error => {
+        const users = [{ firstName: "Error" }];
+        this.setState({ users });
+        console.log(error);
       });
-      console.log(users);
-    });
   }
 
   render() {
