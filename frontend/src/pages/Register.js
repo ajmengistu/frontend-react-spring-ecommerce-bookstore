@@ -1,8 +1,13 @@
 import React from "react";
+import AccountRegistrationForm from "../components/AccountRegistrationForm";
 
 // Account Registration page.
 const Register = () => {
-  return <div>This is the account registration page!</div>;
+  return (
+    <>
+      <AccountRegistrationForm />
+    </>
+  );
 };
 
 export default Register;

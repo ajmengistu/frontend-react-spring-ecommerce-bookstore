@@ -35,7 +35,7 @@ const SignInForm = () => {
                           autoFocus
                           placeholder="Username or email address"
                           type="email"
-                          className="form-control form-control-lg rounded-0"
+                          className="form-control form-control-lg rounded"
                           name="inputUsername"
                           id="inputUsername"
                           required
@@ -48,7 +48,7 @@ const SignInForm = () => {
                         <input
                           type="password"
                           placeholder="Password"
-                          className="form-control form-control-lg rounded-0"
+                          className="form-control form-control-lg rounded"
                           id="iputPassword"
                           autoComplete="new-password"
                           required
@@ -70,6 +70,10 @@ const SignInForm = () => {
                       >
                         Sign in
                       </button>
+                      <p className="mt-5 mb-3">
+                        <a href="/signup"> Create an account</a>
+                      </p>
+
                       <p className="mt-5 mb-3 text-muted text-center">
                         © Bookstore 2020
                       </p>
