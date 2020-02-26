@@ -74,10 +74,6 @@ const SignInForm = () => {
                       <p className="mt-3 mb-3">
                         <Link to="/signup">Create an account</Link>
                       </p>
-
-                      <p className="mt-5 mb-3 text-muted text-center">
-                        © Bookstore 2020
-                      </p>
                     </form>
                   </div>
                 </div>

@@ -127,10 +127,6 @@ const AccountRegistrationForm = () => {
                         By creating an account, you agree to Bookstore's
                         Conditions of Use and Privacy Notice.
                       </p>
-                      {/* Copyright */}
-                      <p className="mt-5 mb-3 text-muted text-center">
-                        © Bookstore 2020
-                      </p>
                     </form>
                   </div>
                 </div>
