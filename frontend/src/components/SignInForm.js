@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 
 const SignInForm = () => {
@@ -70,8 +71,8 @@ const SignInForm = () => {
                       >
                         Sign in
                       </button>
-                      <p className="mt-5 mb-3">
-                        <a href="/signup"> Create an account</a>
+                      <p className="mt-3 mb-3">
+                        <Link to="/signup">Create an account</Link>
                       </p>
 
                       <p className="mt-5 mb-3 text-muted text-center">
