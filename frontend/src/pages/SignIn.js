@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer";
 import SignInForm from "../components/SignInForm";
+import { signInUser } from "../utils/AuthenticationService";
 
 // Account Sign in page.
 class SignIn extends React.Component {
@@ -9,7 +10,8 @@ class SignIn extends React.Component {
     this.state = {
       usernameOrEmail: "",
       password: "",
-      rememberMe: false
+      rememberMe: false,
+      errorMessage: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,10 +27,17 @@ class SignIn extends React.Component {
     });
   };
 
+  verifySubmission = (event) => {
+    const requestMethod = event.target.method.toLowerCase();
+    if (requestMethod !== "post") {
+      this.setState({ errorMessage: "Invalid method request." });
+    }
+  };
+
   handleSubmit(event) {
-    event.preventDefault();
-    console.log(this.state);
-    console.log(event.target);
+    event.preventDefault(); // don't refresh the page.
+    this.verifySubmission(event);
+    signInUser(this.state);
   }
 
   render() {

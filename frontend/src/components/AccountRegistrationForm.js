@@ -1,8 +1,9 @@
 import React from "react";
 import Helmet from "react-helmet";
+import FormInputError from "../components/FormInputError";
 
 // Account registration form to register new users for an account.
-const AccountRegistrationForm = () => {
+const AccountRegistrationForm = props => {
   return (
     <>
       <Helmet bodyAttributes={{ style: "background-color: #f5f5f5" }} />
@@ -16,6 +17,7 @@ const AccountRegistrationForm = () => {
                   <span className="ml-4">
                     Already have an account? <a href="/signin">Sign in</a>
                   </span>
+                  <p></p>
                   <div className="card-body">
                     <form
                       className="form"
@@ -23,7 +25,11 @@ const AccountRegistrationForm = () => {
                       id="formRegister"
                       noValidate=""
                       method="POST"
+                      onSubmit={e => props.handleSubmit(e)}
                     >
+                      {props.errorMessage && (
+                        <FormInputError errorMessage={props.errorMessage} />
+                      )}
                       {/* Username */}
                       <div className="form-group">
                         <label className="font-weight-bold">Username</label>
@@ -31,8 +37,9 @@ const AccountRegistrationForm = () => {
                           autoFocus
                           type="text"
                           className="form-control form-control-lg rounded"
-                          name="inputUsername"
+                          name="username"
                           id="inputUsername"
+                          onChange={e => props.handleChange(e)}
                           required
                         />
                         <div className="invalid-feedback">
@@ -46,8 +53,9 @@ const AccountRegistrationForm = () => {
                         <input
                           type="email"
                           className="form-control form-control-lg rounded"
-                          name="inputEmail"
+                          name="email"
                           id="inputEmail"
+                          onChange={e => props.handleChange(e)}
                           required
                         />
                         <div className="invalid-feedback">
@@ -61,8 +69,9 @@ const AccountRegistrationForm = () => {
                         <input
                           type="text"
                           className="form-control form-control-lg rounded"
-                          name="inputFirstName"
+                          name="firstName"
                           id="inputFirstName"
+                          onChange={e => props.handleChange(e)}
                           required
                         />
                         <div className="invalid-feedback">
@@ -75,8 +84,9 @@ const AccountRegistrationForm = () => {
                         <input
                           type="text"
                           className="form-control form-control-lg rounded"
-                          name="inputLastName"
+                          name="lastName"
                           id="inputLastName"
+                          onChange={e => props.handleChange(e)}
                           required
                         />
                         <div className="invalid-feedback">
@@ -90,8 +100,9 @@ const AccountRegistrationForm = () => {
                           placeholder="At least 6 characters"
                           type="password"
                           className="form-control form-control-lg rounded"
-                          name="inputPassword"
+                          name="password1"
                           id="inputPassword"
+                          onChange={e => props.handleChange(e)}
                           required
                         />
                         <div className="invalid-feedback">
@@ -106,8 +117,9 @@ const AccountRegistrationForm = () => {
                         <input
                           type="password"
                           className="form-control form-control-lg rounded"
-                          name="inputPassword2"
+                          name="password2"
                           id="inputPassword2"
+                          onChange={e => props.handleChange(e)}
                           required
                         />
                         <div className="invalid-feedback">

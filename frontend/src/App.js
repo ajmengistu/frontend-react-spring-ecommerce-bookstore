@@ -6,15 +6,7 @@ import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
-import { isAuthenticated } from "./utils/AuthenticationService";
-
-export const JSON_PLACE_HOLDER_URL =
-  "https://jsonplaceholder.typicode.com/users";
-export const LOCAL_HOST_API = "http://localhost:8082/api";
-// export const REMOTE_PROD_API =
-// "https://bookstore-react-spring.herokuapp.com/api";
-
-// #### Set up a prod & local testing environment #####
+import { isUserAuthenticated } from "./utils/AuthenticationService";
 
 // A generic private route component to verify authenticated users.
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -22,7 +14,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        isAuthenticated() ? (
+        isUserAuthenticated() ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -44,7 +36,9 @@ const App = () => {
         <Route
           exact
           path="/signin"
-          render={() => (isAuthenticated() ? <Redirect to="/" /> : <SignIn />)}
+          render={() =>
+            isUserAuthenticated() ? <Redirect to="/" /> : <SignIn />
+          }
         ></Route>
         <Route exact path="/" component={Home}></Route>
         <Route component={Error}></Route>

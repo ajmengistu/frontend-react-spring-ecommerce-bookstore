@@ -43,7 +43,6 @@ const SignInForm = props => {
                           name="usernameOrEmail"
                           id="inputUsernameOrEmail"
                           onChange={e => props.handleChange(e)}
-                          // value={props.usernameOrEmail}
                           required
                         />
                         <div className="invalid-feedback">
