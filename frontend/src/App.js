@@ -6,6 +6,7 @@ import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import { isAuthenticated } from "./utils/AuthenticationService";
 
 export const JSON_PLACE_HOLDER_URL =
   "https://jsonplaceholder.typicode.com/users";
@@ -21,7 +22,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        false ? (
+        isAuthenticated() ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -40,7 +41,11 @@ const App = () => {
         <PrivateRoute exact path="/account" component={Account} />
         <Route exact path="/about" component={About}></Route>
         <Route exact path="/signup" component={Register}></Route>
-        <Route exact path="/signin" component={SignIn}></Route>
+        <Route
+          exact
+          path="/signin"
+          render={() => (isAuthenticated() ? <Redirect to="/" /> : <SignIn />)}
+        ></Route>
         <Route exact path="/" component={Home}></Route>
         <Route component={Error}></Route>
       </Switch>

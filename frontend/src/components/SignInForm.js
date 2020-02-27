@@ -3,7 +3,9 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 
-const SignInForm = () => {
+// A form component to allow a user to enter their
+// username or email and password.
+const SignInForm = props => {
   return (
     <>
       <Helmet bodyAttributes={{ style: "background-color: #f5f5f5" }} />
@@ -30,6 +32,7 @@ const SignInForm = () => {
                       id="formSignIn"
                       noValidate=""
                       method="POST"
+                      onSubmit={e => props.handleSubmit(e)}
                     >
                       <div className="form-group">
                         <input
@@ -37,8 +40,10 @@ const SignInForm = () => {
                           placeholder="Username or email address"
                           type="email"
                           className="form-control form-control-lg rounded"
-                          name="inputUsername"
-                          id="inputUsername"
+                          name="usernameOrEmail"
+                          id="inputUsernameOrEmail"
+                          onChange={e => props.handleChange(e)}
+                          // value={props.usernameOrEmail}
                           required
                         />
                         <div className="invalid-feedback">
@@ -47,11 +52,13 @@ const SignInForm = () => {
                       </div>
                       <div className="form-group">
                         <input
-                          type="password"
                           placeholder="Password"
+                          type="password"
                           className="form-control form-control-lg rounded"
+                          name="password"
                           id="iputPassword"
-                          autoComplete="new-password"
+                          onChange={e => props.handleChange(e)}
+                          // value="pass"
                           required
                         />
                         <div className="invalid-feedback">
@@ -60,12 +67,16 @@ const SignInForm = () => {
                       </div>
                       <div>
                         <label className="">
-                          <input type="checkbox" value="remember-me" />
+                          <input
+                            type="checkbox"
+                            checked={props.rememberMe}
+                            name="rememberMe"
+                            onChange={e => props.handleChange(e)}
+                          />
                           <span className="ml-2">Remember me </span>
                         </label>
                       </div>
                       <button
-                        type="submit"
                         className="mt-2 btn btn-lg btn-primary btn-block"
                         id="btnSignIn"
                       >
