@@ -7,20 +7,33 @@ export default axios.create({
   baseURL: REMOTE_USER_API_BASE_URL
 });
 
-export async function signInUser(userCredentials) {
+const config = {
+  header: {
+    "Content-type": "application/json"
+  }
+};
+
+export async function signInUser({
+  usernameOrEmail: username,
+  password,
+  rememberMe
+}) {
   return await resolve(
     axios
-      .post(REMOTE_USER_API_BASE_URL + "/login", userCredentials)
-      .then(res => res.data)
+      .post(
+        REMOTE_USER_API_BASE_URL + "/authenticate",
+        {
+          username: username,
+          password: password
+          // Update server to take rememberMe
+        },
+        config
+      )
+      .then(response => response)
   );
 }
 
 export async function registerUser(formInput) {
-  const config = {
-    header: {
-      "Content-type": "application/json"
-    }
-  };
   return await resolve(
     axios
       .post(REMOTE_USER_API_BASE_URL + "/register", formInput, config)

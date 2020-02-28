@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import FormInputError from "../components/FormInputError";
 import logo from "../images/logo.png";
 
 // A form component to allow a user to enter their
@@ -34,11 +35,17 @@ const SignInForm = props => {
                       method="POST"
                       onSubmit={e => props.handleSubmit(e)}
                     >
+                      {props.errorMessage && (
+                        <FormInputError
+                          type="danger"
+                          errorMessage={props.errorMessage}
+                        />
+                      )}
                       <div className="form-group">
                         <input
                           autoFocus
                           placeholder="Username or email address"
-                          type="email"
+                          type="text"
                           className="form-control form-control-lg rounded"
                           name="usernameOrEmail"
                           id="inputUsernameOrEmail"

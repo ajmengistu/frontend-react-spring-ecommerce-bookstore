@@ -1,3 +1,4 @@
 export const HTTP_STATUS_CODE = {
-  STATUS_201: 201
+  STATUS_201: 201,
+  STATUS_401: 401
 };
