@@ -1,5 +1,6 @@
 import axios from "axios";
 import { resolve } from "../utils/resolve";
+// import { getJWT } from "../utils/AuthenticationService";
 
 export const REMOTE_USER_API_BASE_URL = process.env.REACT_APP_REMOTE_USER_API;
 
@@ -12,6 +13,13 @@ const config = {
     "Content-type": "application/json"
   }
 };
+
+// const postConfig = {
+//   header: {
+//     "Content-type": "application/json",
+//     Authorization: "Bearer" + " " + getJWT()
+//   }
+// };
 
 export async function signInUser({
   usernameOrEmail: username,
@@ -39,4 +47,10 @@ export async function registerUser(formInput) {
       .post(REMOTE_USER_API_BASE_URL + "/register", formInput, config)
       .then(response => response)
   );
+}
+
+export async function getUserAccount() {
+  //   return await resolve(
+  //     axios.get(REMOTE_USER_API_BASE_URL + "/account", postConfig)
+  //   );
 }

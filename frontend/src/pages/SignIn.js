@@ -5,7 +5,6 @@ import { signInUser } from "../api/UserAPI";
 import Footer from "../components/Footer";
 import SignInForm from "../components/SignInForm";
 import {
-  getJWT,
   storeJWT,
   VALID_PASSWORD_LENGTH,
   VALID_USERNAME_LENGTH

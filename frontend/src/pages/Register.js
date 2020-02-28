@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import { HTTP_STATUS_CODE } from "../api/status-codes";
 import { registerUser } from "../api/UserAPI";
 import AccountRegistrationForm from "../components/AccountRegistrationForm";
 import Footer from "../components/Footer";
+import FormInputSuccess from "../components/FormInputSuccess";
 import {
   VALID_PASSWORD_LENGTH,
   VALID_USERNAME_LENGTH
 } from "../utils/AuthenticationService";
-import { HTTP_STATUS_CODE } from "../api/status-codes";
 
 // Account Registration page with React Hooks.
 const Register = props => {
@@ -62,7 +64,9 @@ const Register = props => {
         // but needs to be activated via email.
         if (response.data.status === HTTP_STATUS_CODE.STATUS_201) {
           setSuccessMessage(
-            "Success! A Bookstore account has been created for you. An email has been sent to you to activate your account."
+            "Success! A Bookstore account has been created for you. An email has been sent to " +
+              formInput.email +
+              " to activate your account."
           );
         }
       }
@@ -71,15 +75,19 @@ const Register = props => {
 
   return (
     <>
-      <AccountRegistrationForm
-        errorMessage={errorMessage}
-        successMessage={successMessage}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
+      {successMessage ? (
+        <FormInputSuccess successMessage={successMessage} />
+      ) : (
+        <AccountRegistrationForm
+          errorMessage={errorMessage}
+          successMessage={successMessage}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      )}
       <Footer />
     </>
   );
 };
 
-export default Register;
+export default withRouter(Register);

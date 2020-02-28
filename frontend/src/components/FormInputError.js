@@ -9,17 +9,9 @@ const FormInputError = props => {
           {props.errorMessage}
         </div>
       ) : (
-        [
-          props.type === "danger" ? (
-            <div key="danger" className="alert alert-danger" role="alert">
-              {props.errorMessage}
-            </div>
-          ) : (
-            <div key="success" className="alert alert-success" role="alert">
-              {props.successMessage}
-            </div>
-          )
-        ]
+        <div key="danger" className="alert alert-danger" role="alert">
+          {props.errorMessage}
+        </div>
       )}
     </>
   );

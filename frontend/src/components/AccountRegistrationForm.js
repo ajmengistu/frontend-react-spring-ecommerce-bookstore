@@ -1,6 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import FormInputError from "../components/FormInputError";
+import FormInputSuccess from "../components/FormInputSuccess";
 
 // Account registration form to register new users for an account.
 const AccountRegistrationForm = props => {
@@ -27,11 +28,12 @@ const AccountRegistrationForm = props => {
                       method="POST"
                       onSubmit={e => props.handleSubmit(e)}
                     >
+                      {/* Show Registration input invalid errors. */}
                       {props.errorMessage && (
-                        <FormInputError type="warning" errorMessage={props.errorMessage} />
-                      )}
-                      {props.successMessage && (
-                        <FormInputError type="success" successMessage={props.successMessage} />
+                        <FormInputError
+                          type="warning"
+                          errorMessage={props.errorMessage}
+                        />
                       )}
                       {/* Username */}
                       <div className="form-group">
