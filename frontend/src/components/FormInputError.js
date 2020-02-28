@@ -4,9 +4,15 @@ import React from "react";
 const FormInputError = props => {
   return (
     <>
-      <div className="alert alert-warning" role="alert">
-        {props.errorMessage}
-      </div>
+      {props.type === "warning" ? (
+        <div className="alert alert-warning" role="alert">
+          {props.errorMessage}
+        </div>
+      ) : (
+        <div className="alert alert-success" role="alert">
+          {props.successMessage}
+        </div>
+      )}
     </>
   );
 };

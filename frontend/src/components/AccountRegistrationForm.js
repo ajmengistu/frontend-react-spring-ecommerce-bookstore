@@ -28,7 +28,10 @@ const AccountRegistrationForm = props => {
                       onSubmit={e => props.handleSubmit(e)}
                     >
                       {props.errorMessage && (
-                        <FormInputError errorMessage={props.errorMessage} />
+                        <FormInputError type="warning" errorMessage={props.errorMessage} />
+                      )}
+                      {props.successMessage && (
+                        <FormInputError type="success" successMessage={props.successMessage} />
                       )}
                       {/* Username */}
                       <div className="form-group">
@@ -100,7 +103,7 @@ const AccountRegistrationForm = props => {
                           placeholder="At least 6 characters"
                           type="password"
                           className="form-control form-control-lg rounded"
-                          name="password1"
+                          name="password"
                           id="inputPassword"
                           onChange={e => props.handleChange(e)}
                           required
