@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import About from "./pages/About";
-import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
-import SignOut from "./components/SignOut";
 import { isUserAuthenticated } from "./utils/AuthenticationService";
 
 // A generic private route component to verify authenticated users.
@@ -29,6 +28,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 const App = () => {
+  const [, setHasUserSuccessfullySignedIn] = useState(isUserAuthenticated());
+
   return (
     <>
       <NavigationBar />
@@ -36,12 +37,15 @@ const App = () => {
         <PrivateRoute exact path="/profile" component={Profile} />
         <Route exact path="/about" component={About}></Route>
         <Route exact path="/signup" component={Register}></Route>
-        <Route exact path="/signout" component={SignOut}></Route>
         <Route
           exact
           path="/signin"
           render={() =>
-            isUserAuthenticated() ? <Redirect to="/" /> : <SignIn />
+            isUserAuthenticated() ? (
+              <Redirect to="/" />
+            ) : (
+              <SignIn handleUserSignIn={setHasUserSuccessfullySignedIn} />
+            )
           }
         ></Route>
         <Route exact path="/" component={Home}></Route>

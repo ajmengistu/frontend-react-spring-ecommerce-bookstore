@@ -2,12 +2,14 @@ export const VALID_PASSWORD_LENGTH = 6;
 export const VALID_USERNAME_LENGTH = 2;
 
 export function isUserAuthenticated() {
-  if (getJWT()) return true;
+  const jwt = getJWT();
+  if (jwt) {
+    return true;
+  }
   return false;
 }
 
 export function signOutUser() {
-  console.log("signing Out user!!");
   localStorage.removeItem("JWT");
 }
 

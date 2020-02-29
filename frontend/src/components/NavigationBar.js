@@ -1,7 +1,14 @@
 import React from "react";
 import { Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
+import { isUserAuthenticated, signOutUser } from "../utils/AuthenticationService";
 
 const NavigationBar = props => {
+  const handleSignOut = () => {
+    signOutUser();
+    props.history.push("/");
+  };
+
   return (
     <>
       <Container>
@@ -28,10 +35,11 @@ const NavigationBar = props => {
             <Nav>
               <Nav.Link href="#link">Notifications</Nav.Link>
               <NavDropdown title="Account" id="basic-nav-dropdown">
-                {/* <NavDropdown.Item>Action</NavDropdown.Item> */}
-                <p className="ml-4">
-                  <b> John Doe</b>
-                </p>
+                {isUserAuthenticated() && (
+                  <p className="ml-4">
+                    <b> John Doe</b>
+                  </p>
+                )}
                 <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Groups</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Comments</NavDropdown.Item>
@@ -42,7 +50,13 @@ const NavigationBar = props => {
                 <NavDropdown.Item href="/signout">
                   Account Settings
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/signout">Sign out</NavDropdown.Item>
+                {isUserAuthenticated() ? (
+                  <NavDropdown.Item onClick={() => handleSignOut()}>
+                    Sign out
+                  </NavDropdown.Item>
+                ) : (
+                  <NavDropdown.Item href="/signin">Sign in</NavDropdown.Item>
+                )}
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
@@ -52,4 +66,4 @@ const NavigationBar = props => {
   );
 };
 
-export default NavigationBar;
+export default withRouter(NavigationBar);

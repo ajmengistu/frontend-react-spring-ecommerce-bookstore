@@ -5,6 +5,7 @@ import { signInUser } from "../api/UserAPI";
 import Footer from "../components/Footer";
 import SignInForm from "../components/SignInForm";
 import {
+  isUserAuthenticated,
   storeJWT,
   VALID_PASSWORD_LENGTH,
   VALID_USERNAME_LENGTH
@@ -68,6 +69,7 @@ class SignIn extends React.Component {
 
     // User successfully logged in
     storeJWT(serverResponse.data.data.id_token);
+    this.props.handleUserSignIn(isUserAuthenticated());
     this.props.history.push("/");
   }
 
