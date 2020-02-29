@@ -21,11 +21,11 @@ const SignInForm = props => {
                       <img
                         className="rounded mx-auto d-block"
                         src={logo}
-                        alt="Site logo"
+                        alt="logo"
                       />
                     </a>
+                    <h3 className="mt-0 mb-4 text-center">Sign in</h3>
                   </div>
-                  <h3 className="mt-0 mb-4 text-center">Sign in</h3>
                   <div className="">
                     <form
                       className="form"

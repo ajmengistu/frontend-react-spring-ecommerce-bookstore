@@ -1,7 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
 import FormInputError from "../components/FormInputError";
-import FormInputSuccess from "../components/FormInputSuccess";
 
 // Account registration form to register new users for an account.
 const AccountRegistrationForm = props => {

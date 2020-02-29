@@ -1,11 +1,13 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import NavigationBar from "./components/NavigationBar";
 import About from "./pages/About";
 import Account from "./pages/Account";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import SignOut from "./components/SignOut";
 import { isUserAuthenticated } from "./utils/AuthenticationService";
 
 // A generic private route component to verify authenticated users.
@@ -29,10 +31,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const App = () => {
   return (
     <>
+      <NavigationBar />
       <Switch>
         <PrivateRoute exact path="/account" component={Account} />
         <Route exact path="/about" component={About}></Route>
         <Route exact path="/signup" component={Register}></Route>
+        <Route exact path="/signout" component={SignOut}></Route>
         <Route
           exact
           path="/signin"
