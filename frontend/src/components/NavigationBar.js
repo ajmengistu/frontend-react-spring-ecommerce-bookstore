@@ -32,7 +32,7 @@ const NavigationBar = props => {
                 <p className="ml-4">
                   <b> John Doe</b>
                 </p>
-                <NavDropdown.Item href="#action/3.2">Profile</NavDropdown.Item>
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Groups</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">Comments</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">
