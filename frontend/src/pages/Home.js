@@ -1,11 +1,9 @@
 import React from "react";
-import { isUserAuthenticated } from "../utils/AuthenticationService";
-// import "./Home.css";
 
+// Home page.
 const Home = () => {
   return (
     <>
-    {console.log(isUserAuthenticated())}
       <div>This is the home page!</div>;
     </>
   );

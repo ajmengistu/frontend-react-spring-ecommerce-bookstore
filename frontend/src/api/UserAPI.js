@@ -1,56 +1,50 @@
 import axios from "axios";
 import { resolve } from "../utils/resolve";
-// import { getJWT } from "../utils/AuthenticationService";
+import { getJWT } from "../utils/AuthenticationService";
 
 export const REMOTE_USER_API_BASE_URL = process.env.REACT_APP_REMOTE_USER_API;
 
-export default axios.create({
-  baseURL: REMOTE_USER_API_BASE_URL
+const instance = axios.create({
+  baseURL: REMOTE_USER_API_BASE_URL,
+  timeout: 5000,
+  headers: { "Content-type": "application/json" }
 });
 
 const config = {
-  header: {
-    "Content-type": "application/json"
+  headers: {
+    Authorization: "Bearer " + getJWT()
   }
 };
 
-// const postConfig = {
-//   header: {
-//     "Content-type": "application/json",
-//     Authorization: "Bearer" + " " + getJWT()
-//   }
-// };
-
-export async function signInUser({
-  usernameOrEmail: username,
-  password,
-  rememberMe
-}) {
+// Sign in an existing activated user
+export async function signInUser({ usernameOrEmail: username, password }) {
   return await resolve(
     axios
-      .post(
-        REMOTE_USER_API_BASE_URL + "/authenticate",
-        {
-          username: username,
-          password: password
-          // Update server to take rememberMe
-        },
-        config
-      )
+      .post(REMOTE_USER_API_BASE_URL + "/authenticate", {
+        username: username,
+        password: password
+        // Update server to take rememberMe
+      })
       .then(response => response)
   );
 }
 
+// Register a new user
 export async function registerUser(formInput) {
   return await resolve(
     axios
-      .post(REMOTE_USER_API_BASE_URL + "/register", formInput, config)
+      .post(REMOTE_USER_API_BASE_URL + "/register", formInput, {
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
       .then(response => response)
   );
 }
 
+// Get the account info of the currently authenticated user.
 export async function getUserAccount() {
-  //   return await resolve(
-  //     axios.get(REMOTE_USER_API_BASE_URL + "/account", postConfig)
-  //   );
+  return await resolve(
+    instance.get("/account", config).then(response => response)
+  );
 }

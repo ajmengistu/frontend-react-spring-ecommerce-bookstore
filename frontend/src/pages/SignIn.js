@@ -61,6 +61,10 @@ class SignIn extends React.Component {
       serverResponse.error &&
       serverResponse.error.response.status === HTTP_STATUS_CODE.STATUS_401
     ) {
+      // TODO:
+      // Give an accurate error if an accoutn has not been activated yet. using
+      // the returned status code
+
       this.setState({
         errorMessage: "Invalid username or password. Please try again."
       });
@@ -69,8 +73,11 @@ class SignIn extends React.Component {
 
     // User successfully logged in
     storeJWT(serverResponse.data.data.id_token);
+    // This prop handleUserSignIn is from from App.js to re-render
+    // the main navbar to update the sign in button to sign out button.
     this.props.handleUserSignIn(isUserAuthenticated());
-    this.props.history.push("/");
+    // Route to the last requsted page before signing in.
+    // this.props.history.push("/");
   }
 
   render() {

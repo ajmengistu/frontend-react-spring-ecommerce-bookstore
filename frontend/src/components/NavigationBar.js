@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { isUserAuthenticated, signOutUser } from "../utils/AuthenticationService";
 
 const NavigationBar = props => {
+  const [, setHasUserSignedOut] = useState(false);
+
   const handleSignOut = () => {
     signOutUser();
+    setHasUserSignedOut(true);
     props.history.push("/");
   };
 

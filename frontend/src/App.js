@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import { isUserAuthenticated } from "./utils/AuthenticationService";
+import { Helmet } from "react-helmet";
 
 // A generic private route component to verify authenticated users.
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -28,10 +29,16 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 const App = () => {
+  // Note:
+  // setHasUserSuccessfullySignedIn function Hook is called when a user successfully signs in,
+  // thus re-rendering the App component. Subsequently, it will send props down to NavigationBar
+  // component. In the NavigationBar, isUserAuthenticated() function will be invoked updating 
+  // the sign in button to sign out in the navbar.
   const [, setHasUserSuccessfullySignedIn] = useState(isUserAuthenticated());
 
   return (
     <>
+      <Helmet bodyAttributes={{ style: "background-color: #f5f5f5" }} />
       <NavigationBar />
       <Switch>
         <PrivateRoute exact path="/profile" component={Profile} />

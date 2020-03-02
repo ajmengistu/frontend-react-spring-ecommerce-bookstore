@@ -6,7 +6,6 @@ import FormInputError from "../components/FormInputError";
 const AccountRegistrationForm = props => {
   return (
     <>
-      <Helmet bodyAttributes={{ style: "background-color: #f5f5f5" }} />
       <div className="container">
         <div className="row">
           <div className="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
