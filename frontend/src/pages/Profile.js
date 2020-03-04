@@ -34,8 +34,8 @@ const Profile = props => {
                   </p>
                   <p className="card-text">Username: {userProfile.username}</p>
                   <p>Email: {userProfile.email}</p>
-                  <p>Account created: {userProfile.createdDate}</p>
-                  <p>Last modified: {userProfile.lastModifiedDate}</p>
+                  <p>Account created: { new Date(userProfile.lastModifiedDate).toLocaleString()}</p>
+                  <p>Last modified: { new Date(userProfile.lastModifiedDate).toLocaleString()}</p>
                 </div>
               </div>
             </div>
