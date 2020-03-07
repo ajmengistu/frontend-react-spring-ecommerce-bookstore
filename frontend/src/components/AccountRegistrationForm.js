@@ -1,5 +1,4 @@
 import React from "react";
-import Helmet from "react-helmet";
 import FormInputError from "../components/FormInputError";
 
 // Account registration form to register new users for an account.

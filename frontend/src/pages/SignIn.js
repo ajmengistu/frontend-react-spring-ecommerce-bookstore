@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { HTTP_STATUS_CODE } from "../api/status-codes";
-import { signInUser } from "../api/UserAPI";
+import UserAPI from "../api/UserAPI";
 import Footer from "../components/Footer";
 import SignInForm from "../components/SignInForm";
 import {
@@ -56,7 +56,7 @@ class SignIn extends React.Component {
     }
 
     // Otherwise, attempt login.
-    const serverResponse = await signInUser(this.state);
+    const serverResponse = await UserAPI.signInUser(this.state);
     if (
       serverResponse.error &&
       serverResponse.error.response.status === HTTP_STATUS_CODE.STATUS_401

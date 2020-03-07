@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { HTTP_STATUS_CODE } from "../api/status-codes";
-import { registerUser } from "../api/UserAPI";
+import UserAPI from "../api/UserAPI";
 import AccountRegistrationForm from "../components/AccountRegistrationForm";
 import Footer from "../components/Footer";
 import FormInputSuccess from "../components/FormInputSuccess";
@@ -45,7 +45,7 @@ const Register = props => {
       setErrorMessage("Username is too short.");
     } else {
       setErrorMessage("");
-      const response = await registerUser(formInput);
+      const response = await UserAPI.registerUser(formInput);
       if (response.error) {
         // NOTE:
         // response.error.response.data looks like this:
