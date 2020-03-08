@@ -52,6 +52,17 @@ class UserAPI {
     );
   };
 
+  updateUserAccount = async user => {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + getJWT()
+      }
+    };
+    return await resolve(
+      instance.post("/account", user, config).then(response => response)
+    );
+  };
+
   // Activate a registered user account. keyValue will be of the
   // form key=xyax-234-DAj32.
   activateAccount = async keyValue => {
