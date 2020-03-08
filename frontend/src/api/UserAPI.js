@@ -51,6 +51,14 @@ class UserAPI {
       instance.get("/account", config).then(response => response)
     );
   };
+
+  // Activate a registered user account. keyValue will be of the
+  // form key=xyax-234-DAj32.
+  activateAccount = async keyValue => {
+    return await resolve(
+      instance.get("/activate?" + keyValue).then(response => response)
+    );
+  };
 }
 
 export default UserAPI = new UserAPI();

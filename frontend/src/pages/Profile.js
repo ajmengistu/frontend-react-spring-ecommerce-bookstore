@@ -15,7 +15,6 @@ const Profile = props => {
       setIsLoading(false);
       const profile = await response.data.data;
       setUserProfile(profile);
-      console.log(profile);
     };
     fetchUserProfile();
   }, []);

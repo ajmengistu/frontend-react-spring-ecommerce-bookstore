@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect, Route, Switch } from "react-router-dom";
-import UserAPI from "./api/UserAPI";
 import NavigationBar from "./components/NavigationBar";
 import About from "./pages/About";
+import AccountActivation from "./pages/AccountActivation";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -31,7 +31,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const App = () => {
   const [, setHasUserSuccessfullySignedIn] = useState(isUserAuthenticated());
-  const [accountUser, setAccountUser] = useState({});
+  const [accountUser, ] = useState({});
 
   // Note:
   // setHasUserSuccessfullySignedIn function Hook is called when a user successfully signs in,
@@ -40,12 +40,6 @@ const App = () => {
   // the sign in button to sign out in the navbar.
   const handleUserSignIn = async isUserSignedIn => {
     setHasUserSuccessfullySignedIn(isUserSignedIn);
-    // const response = await UserAPI.getUserAccount();
-    // const account = response.data.data;
-    // setAccountUser({
-    //   firstName: account.firstName,
-    //   lastName: account.lastName
-    // });
   };
 
   return (
@@ -68,6 +62,7 @@ const App = () => {
           }
         ></Route>
         <Route exact path="/" component={Home}></Route>
+        <Route exact path="/activate/:key" component={AccountActivation}></Route>
         <Route component={Error}></Route>
       </Switch>
     </>

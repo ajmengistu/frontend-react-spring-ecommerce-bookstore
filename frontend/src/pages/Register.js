@@ -7,7 +7,8 @@ import Footer from "../components/Footer";
 import FormInputSuccess from "../components/FormInputSuccess";
 import {
   VALID_PASSWORD_LENGTH,
-  VALID_USERNAME_LENGTH
+  VALID_USERNAME_LENGTH,
+  REACT_APP_HOST_ORIGIN
 } from "../utils/AuthenticationService";
 
 // Account Registration page with React Hooks.
@@ -20,7 +21,8 @@ const Register = props => {
     firstName: "",
     lastName: "",
     password: "",
-    password2: ""
+    password2: "",
+    clientOrigin: ""
   });
 
   const handleChange = event => {
@@ -45,6 +47,10 @@ const Register = props => {
       setErrorMessage("Username is too short.");
     } else {
       setErrorMessage("");
+
+      const host_origin = REACT_APP_HOST_ORIGIN;
+      setFormInput((formInput.clientOrigin = host_origin));
+
       const response = await UserAPI.registerUser(formInput);
       if (response.error) {
         // NOTE:
