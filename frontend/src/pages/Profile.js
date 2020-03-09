@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import UserAPI from "../api/UserAPI";
 import Loading from "../components/Loading";
-import FormInputSuccess from "../components/FormInputSuccess";
 import UserProfile from "../components/UserProfile";
+import Footer from "../components/Footer";
 
 // An authenticated user profile page.
 const Profile = props => {
@@ -33,7 +33,7 @@ const Profile = props => {
     }
 
     setIsLoading(true);
-    const response = await UserAPI.updateUserAccount(updateProfile);
+    await UserAPI.updateUserAccount(updateProfile);
     setIsLoading(false);
 
     setIsLoading(true);
@@ -90,6 +90,7 @@ const Profile = props => {
           handleChange={handleChange}
         />
       )}
+      <Footer />
     </>
   );
 };
