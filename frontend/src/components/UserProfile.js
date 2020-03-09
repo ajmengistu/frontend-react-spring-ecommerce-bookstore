@@ -1,5 +1,4 @@
-import React, { Link } from "react";
-import FormInputError from "../components/FormInputError";
+import React from "react";
 
 // A component to view an authenticated user's profile information. display that a
 const UserProfile = props => {
@@ -11,14 +10,6 @@ const UserProfile = props => {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">User Profile</h5>
-                {/* <p className="card-text">
-                  Account created:{" "}
-                  {new Date(props.user.lastModifiedDate).toLocaleString()}
-                </p>
-                <p>
-                  Last modified:{" "}
-                  {new Date(props.user.lastModifiedDate).toLocaleString()}
-                </p> */}
                 <form
                   method="POST"
                   className="form"
@@ -28,12 +19,12 @@ const UserProfile = props => {
                   onSubmit={e => props.handleSubmit(e)}
                 >
                   <div className="form-group row">
-                    <label className="col-sm-3">Username:</label>
+                    <label className="col-sm-4">Username:</label>
                     <div className="col-sm-8">{props.user.username}</div>
                   </div>
 
                   <div className="form-group row">
-                    <label className="col-sm-3 col-form-label col-form-label">
+                    <label className="col-sm-4 col-form-label col-form-label">
                       Email
                     </label>
                     <div className="col-sm-8">
@@ -48,7 +39,7 @@ const UserProfile = props => {
                   </div>
 
                   <div className="form-group row">
-                    <label className="col-sm-3 col-form-label col-form-label">
+                    <label className="col-sm-4 col-form-label col-form-label">
                       First Name:
                     </label>
                     <div className="col-sm-8">
@@ -63,7 +54,7 @@ const UserProfile = props => {
                   </div>
 
                   <div className="form-group row">
-                    <label className="col-sm-3 col-form-label col-form-label">
+                    <label className="col-sm-4 col-form-label col-form-label">
                       Last Name:
                     </label>
                     <div className="col-sm-8">
@@ -74,6 +65,20 @@ const UserProfile = props => {
                         placeholder={props.user.lastName}
                         onChange={e => props.handleChange(e)}
                       />
+                    </div>
+                  </div>
+
+                  <div className="form-group row">
+                    <label className="col-sm-4">Account created: </label>
+                    <div className="col-sm-8">
+                      {new Date(props.user.lastModifiedDate).toLocaleString()}
+                    </div>
+                  </div>
+
+                  <div className="form-group row">
+                    <label className="col-sm-4">Last modified: </label>
+                    <div className="col-sm-8">
+                      {new Date(props.user.lastModifiedDate).toLocaleString()}
                     </div>
                   </div>
 

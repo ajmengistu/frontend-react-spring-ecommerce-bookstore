@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import About from "./pages/About";
 import AccountActivation from "./pages/AccountActivation";
+import AccountSettings from "./pages/AccountSettings";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -31,7 +32,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const App = () => {
   const [, setHasUserSuccessfullySignedIn] = useState(isUserAuthenticated());
-  const [accountUser, ] = useState({});
+  const [accountUser] = useState({});
 
   // Note:
   // setHasUserSuccessfullySignedIn function Hook is called when a user successfully signs in,
@@ -62,7 +63,16 @@ const App = () => {
           }
         ></Route>
         <Route exact path="/" component={Home}></Route>
-        <Route exact path="/activate/:key" component={AccountActivation}></Route>
+        <Route
+          exact
+          path="/activate/:key"
+          component={AccountActivation}
+        ></Route>
+        <Route
+          exat
+          path="/account/settings"
+          component={AccountSettings}
+        ></Route>
         <Route component={Error}></Route>
       </Switch>
     </>

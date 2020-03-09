@@ -62,7 +62,7 @@ const NavigationBar = props => {
                   Discussions
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item>Account Settings</NavDropdown.Item>
+                <NavDropdown.Item href="/account/settings">Account Settings</NavDropdown.Item>
                 {isUserAuthenticated() ? (
                   <NavDropdown.Item onClick={() => handleSignOut()}>
                     Sign out

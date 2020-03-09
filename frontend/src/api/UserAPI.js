@@ -63,6 +63,20 @@ class UserAPI {
     );
   };
 
+  updateUserPassword = async passwordDTO => {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + getJWT()
+      }
+    };
+
+    return await resolve(
+      instance
+        .post("/account/change-password", passwordDTO, config)
+        .then(response => response)
+    );
+  };
+
   // Activate a registered user account. keyValue will be of the
   // form key=xyax-234-DAj32.
   activateAccount = async keyValue => {
