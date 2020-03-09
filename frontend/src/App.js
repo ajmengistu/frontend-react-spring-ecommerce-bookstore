@@ -68,11 +68,11 @@ const App = () => {
           path="/activate/:key"
           component={AccountActivation}
         ></Route>
-        <Route
+        <PrivateRoute
           exat
           path="/account/settings"
           component={AccountSettings}
-        ></Route>
+        ></PrivateRoute>
         <Route component={Error}></Route>
       </Switch>
     </>
