@@ -14,6 +14,14 @@ const instance = axios.create({
 
 // A singleton service class to talk to remote User API.
 class UserAPI {
+  // Activate a registered user account. keyValue will be of the
+  // form key=xyax-234-DAj32.
+  activateAccount = async keyValue => {
+    return await resolve(
+      instance.get("/activate?" + keyValue).then(response => response)
+    );
+  };
+
   // Sign in an existing activated user
   signInUser = async ({ usernameOrEmail: username, password }) => {
     return await resolve(
@@ -52,6 +60,7 @@ class UserAPI {
     );
   };
 
+  // Update an authenticated user's account info (email, first name, and last name).
   updateUserAccount = async user => {
     const config = {
       headers: {
@@ -63,7 +72,8 @@ class UserAPI {
     );
   };
 
-  updateUserPassword = async passwordDTO => {
+  // Update an authenticated user's password.
+  updateUserPassword = async passwordUpdateVM => {
     const config = {
       headers: {
         Authorization: "Bearer " + getJWT()
@@ -72,16 +82,16 @@ class UserAPI {
 
     return await resolve(
       instance
-        .post("/account/change-password", passwordDTO, config)
+        .post("/account/change-password", passwordUpdateVM, config)
         .then(response => response)
     );
   };
 
-  // Activate a registered user account. keyValue will be of the
-  // form key=xyax-234-DAj32.
-  activateAccount = async keyValue => {
+  resetUserPassword = async passwordRestVM => {
     return await resolve(
-      instance.get("/activate?" + keyValue).then(response => response)
+      instance
+        .post("/account/reset-password/init", passwordRestVM)
+        .then(response => response)
     );
   };
 }

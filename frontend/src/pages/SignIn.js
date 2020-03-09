@@ -68,7 +68,6 @@ class SignIn extends React.Component {
       this.setState({
         errorMessage: "Invalid username or password. Please try again."
       });
-
       return;
     }
 

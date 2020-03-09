@@ -1,3 +1,4 @@
+import ResetPassword from "./pages/ResetPassword";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect, Route, Switch } from "react-router-dom";
@@ -73,6 +74,7 @@ const App = () => {
           path="/account/settings"
           component={AccountSettings}
         ></PrivateRoute>
+        <Route exact path="/reset/password" component={ResetPassword}></Route>
         <Route component={Error}></Route>
       </Switch>
     </>

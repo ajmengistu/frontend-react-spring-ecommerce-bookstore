@@ -72,6 +72,9 @@ const SignInForm = props => {
                         </div>
                       </div>
                       <div>
+                        <p>
+                          <Link to="/reset/password">Forgot password?</Link>
+                        </p>
                         <label className="">
                           <input
                             type="checkbox"

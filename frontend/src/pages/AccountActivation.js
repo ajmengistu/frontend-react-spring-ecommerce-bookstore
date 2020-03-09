@@ -5,7 +5,7 @@ import FormInputError from "../components/FormInputError";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
-// A page to handle account activation. A user receives an account
+// An account activation page to handle account activation. A user receives an account
 // activation link with a key that will expire after 24 hours.
 const AccountActivation = props => {
   const [isAccountActivated, setIsAccountActivated] = useState(false);
