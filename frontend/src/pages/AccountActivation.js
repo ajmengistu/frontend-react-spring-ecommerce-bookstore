@@ -10,11 +10,12 @@ import { Link } from "react-router-dom";
 const AccountActivation = props => {
   const [isAccountActivated, setIsAccountActivated] = useState(false);
   const [message, setMessage] = useState("");
-  const keyValue = props.match.params.key;
+
+  const activationTokenKey = props.match.params.key;
 
   useEffect(() => {
     const handleAccountActivation = async () => {
-      const response = await UserAPI.activateAccount(keyValue);
+      const response = await UserAPI.activateAccount(activationTokenKey);
 
       if (response.data) {
         setIsAccountActivated(true);
@@ -24,7 +25,7 @@ const AccountActivation = props => {
       }
     };
     handleAccountActivation();
-  }, []);
+  }, [activationTokenKey]);
 
   return (
     <>

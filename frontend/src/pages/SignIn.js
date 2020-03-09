@@ -76,9 +76,14 @@ class SignIn extends React.Component {
     // This prop handleUserSignIn is from from App.js to re-render
     // the main navbar to update the sign in button to sign out button.
     this.props.handleUserSignIn(isUserAuthenticated());
-    // Route to the last requsted page before signing in.
-    const previousPage = this.props.location.state.from.pathname;
-    this.props.history.push(previousPage);
+
+    // Route to the last Private requsted page before signing in.
+    // Note: non-private/public page requests will result in
+    // previousPage variable to be null.
+    const previousPage = this.props.location.state;
+    if (previousPage) {
+      this.props.history.push(previousPage.from.pathname);
+    }
   }
 
   render() {

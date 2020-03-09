@@ -87,10 +87,25 @@ class UserAPI {
     );
   };
 
-  resetUserPassword = async passwordRestVM => {
+  // Begin reset an unauthenticated user's password.
+  // Purpose: for example, when a user forgets their password.
+  // Parameter: {email: "", clientToken: ""}
+  requestUserResetPassword = async passwordRestVM => {
     return await resolve(
       instance
         .post("/account/reset-password/init", passwordRestVM)
+        .then(response => response)
+    );
+  };
+
+  // Finish reset an unauthenticated user's password.
+  // Purpose: reset a user's password using a key token and
+  // a new password.
+  // Paramater: {key: "", newPassword: ""}
+  completeResetPassword = async keyAndNewPassword => {
+    return await resolve(
+      instance
+        .post("/account/reset-password/finish", keyAndNewPassword)
         .then(response => response)
     );
   };

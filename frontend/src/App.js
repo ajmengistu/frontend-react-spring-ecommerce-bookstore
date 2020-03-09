@@ -1,4 +1,3 @@
-import ResetPassword from "./pages/ResetPassword";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Redirect, Route, Switch } from "react-router-dom";
@@ -10,6 +9,8 @@ import Error from "./pages/Error";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
+import ResetPassword from "./pages/ResetPassword";
+import ResetPasswordFinish from "./pages/ResetPasswordFinish";
 import SignIn from "./pages/SignIn";
 import { isUserAuthenticated } from "./utils/AuthenticationService";
 
@@ -75,6 +76,11 @@ const App = () => {
           component={AccountSettings}
         ></PrivateRoute>
         <Route exact path="/reset/password" component={ResetPassword}></Route>
+        <Route
+          exact
+          path="/reset/password/finish/:key"
+          component={ResetPasswordFinish}
+        ></Route>
         <Route component={Error}></Route>
       </Switch>
     </>

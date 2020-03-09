@@ -8,6 +8,8 @@ const Home = () => {
   const [users, setUsers] = useState([{ name: "Error" }]);
 
   useEffect(() => {
+    let unmounted = false;
+
     const getUsers = async () => {
       const response = await resolve(
         axios
@@ -15,10 +17,18 @@ const Home = () => {
           .then(response => response)
       );
       const data = response.data.data;
-      setUsers(data);
+
+      if (!unmounted) {
+        setUsers(data);
+      }
     };
     getUsers();
+
+    return () => {
+      unmounted = true;
+    };
   }, []);
+
   return (
     <>
       <div className="container mt-4">

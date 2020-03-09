@@ -20,7 +20,7 @@ const ResetPassword = props => {
     event.preventDefault();
     const host_origin = REACT_APP_HOST_ORIGIN;
     formInput.clientOrigin = host_origin;
-    const response = await UserAPI.resetUserPassword(formInput);
+    const response = await UserAPI.requestUserResetPassword(formInput);
 
     setErrorMessage("");
     setSuccessMessage("");
@@ -51,10 +51,12 @@ const ResetPassword = props => {
           <ErrorMessage type="warning" errorMessage={errorMessage} />
         )}
         {successMessage && <SuccessMessage successMessage={successMessage} />}
-        <FormResetPassword
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
+        {!successMessage && (
+          <FormResetPassword
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        )}
         <Footer />
       </div>
     </>
