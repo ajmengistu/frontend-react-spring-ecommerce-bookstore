@@ -52,10 +52,8 @@ const SignInForm = props => {
                           onChange={e => props.handleChange(e)}
                           required
                         />
-                        <div className="invalid-feedback">
-                          Oops, you missed this one.
-                        </div>
                       </div>
+                      
                       <div className="form-group">
                         <input
                           placeholder="Password"
@@ -64,13 +62,10 @@ const SignInForm = props => {
                           name="password"
                           id="iputPassword"
                           onChange={e => props.handleChange(e)}
-                          // value="pass"
                           required
                         />
-                        <div className="invalid-feedback">
-                          Enter your password too!
-                        </div>
                       </div>
+
                       <div>
                         <p>
                           <Link to="/reset/password">Forgot password?</Link>
@@ -85,12 +80,14 @@ const SignInForm = props => {
                           <span className="ml-2">Remember me </span>
                         </label>
                       </div>
+
                       <button
                         className="mt-2 btn btn-lg btn-primary btn-block"
                         id="btnSignIn"
                       >
                         Sign in
                       </button>
+
                       <p className="mt-3 mb-3">
                         <Link to="/signup">Create an account</Link>
                       </p>

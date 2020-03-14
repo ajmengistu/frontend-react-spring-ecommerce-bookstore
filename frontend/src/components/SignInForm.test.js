@@ -1,11 +1,11 @@
-import React from "react";
-import { render, cleanup, waitForElement } from "@testing-library/react";
+import { cleanup } from "@testing-library/react";
 import axiosMock from "axios";
 
 // Note: running cleanup afterEach is done automatically for you in @testing-library/react@9.0.0 or higher
 // unmount and cleanup DOM after the test is finished.
 afterEach(() => {
   axiosMock.get.mockClear();
+  // render(<App />);
   cleanup;
 });
 
@@ -18,7 +18,6 @@ test("Example test", () => {
 test("Example test", () => {
   expect(false).toBeFalsy();
 });
-
 
 // const mockCall = () => {
 //   axiosMock.get.mockResolvedValueOnce({
