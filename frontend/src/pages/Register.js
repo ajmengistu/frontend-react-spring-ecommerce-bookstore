@@ -5,6 +5,7 @@ import UserAPI from "../api/UserAPI";
 import AccountRegistrationForm from "../components/AccountRegistrationForm";
 import Footer from "../components/Footer";
 import FormInputSuccess from "../components/FormInputSuccess";
+import Loading from "../components/Loading";
 import {
   VALID_PASSWORD_LENGTH,
   VALID_USERNAME_LENGTH,
@@ -15,6 +16,7 @@ import {
 const Register = props => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const [formInput, setFormInput] = useState({
     username: "",
     email: "",
@@ -50,7 +52,7 @@ const Register = props => {
 
       const host_origin = REACT_APP_HOST_ORIGIN;
       setFormInput((formInput.clientOrigin = host_origin));
-
+      setLoading(true);
       const response = await UserAPI.registerUser(formInput);
       if (response.error) {
         // NOTE:
@@ -64,6 +66,7 @@ const Register = props => {
         //}
         const serverResponse = response.error.response.data;
         // Username or email has already been used.
+        setLoading(false);
         setErrorMessage(serverResponse.message);
       } else {
         // A new user account has been successfully created,
@@ -79,18 +82,30 @@ const Register = props => {
     }
   };
 
+  if (successMessage) {
+    return (
+      <>
+        <FormInputSuccess successMessage={successMessage} />
+        <Footer />
+      </>
+    );
+  }
+  if (isLoading) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
+  }
+
   return (
     <>
-      {successMessage ? (
-        <FormInputSuccess successMessage={successMessage} />
-      ) : (
-        <AccountRegistrationForm
-          errorMessage={errorMessage}
-          successMessage={successMessage}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-      )}
+      <AccountRegistrationForm
+        errorMessage={errorMessage}
+        successMessage={successMessage}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
       <Footer />
     </>
   );
