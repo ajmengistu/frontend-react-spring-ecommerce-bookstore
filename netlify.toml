@@ -8,6 +8,7 @@
 
 # A redirect rule:
 # Notifies Netlify to NOT throw an error "page not found" because of React-Router.
+# Note: The code below did not work during deployment. So, _redirects page was added to the /public dir.
 [[redirects]]
     from = "/*"
     to = "/index.html"
