@@ -10,6 +10,7 @@ import {
   VALID_PASSWORD_LENGTH,
   VALID_USERNAME_LENGTH
 } from "../utils/AuthenticationService";
+import Loading from "../components/Loading";
 
 // Account Sign in page.
 class SignIn extends React.Component {
@@ -19,7 +20,8 @@ class SignIn extends React.Component {
       usernameOrEmail: "",
       password: "",
       rememberMe: false,
-      errorMessage: ""
+      errorMessage: "",
+      isLoading: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -56,7 +58,10 @@ class SignIn extends React.Component {
     }
 
     // Otherwise, attempt login.
+    this.setState({ ...(this.state.isLoading = true) });
     const serverResponse = await UserAPI.signInUser(this.state);
+    this.setState({ ...(this.state.isLoading = false) });
+
     if (
       serverResponse.error &&
       serverResponse.error.response.status === HTTP_STATUS_CODE.STATUS_401
@@ -87,6 +92,9 @@ class SignIn extends React.Component {
   }
 
   render() {
+    if (this.state.isLoading) {
+      return <Loading />;
+    }
     return (
       <>
         <SignInForm

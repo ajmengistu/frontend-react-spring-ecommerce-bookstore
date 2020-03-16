@@ -27,8 +27,17 @@ const Home = () => {
           .get(REMOTE_USER_API_BASE_URL + "/users")
           .then(response => response)
       );
-      const data = response.data.data;
-      const apiData = apiResponse.data.data;
+
+      let data = [{}];
+      let apiData = [{}];
+
+      if (response.error || apiResponse.error) {
+        console.log(response);
+        console.log(apiResponse);
+      } else {
+        data = response.data.data;
+        apiData = apiResponse.data.data;
+      }
 
       if (!unmounted) {
         setUsers(data);
