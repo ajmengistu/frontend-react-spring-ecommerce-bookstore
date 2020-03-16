@@ -21,6 +21,7 @@ const Home = () => {
           .get("https://jsonplaceholder.typicode.com/users")
           .then(response => response)
       );
+      setLoading(false);
       const apiResponse = await resolve(
         axios
           .get(REMOTE_USER_API_BASE_URL + "/users")
@@ -28,7 +29,6 @@ const Home = () => {
       );
       const data = response.data.data;
       const apiData = apiResponse.data.data;
-      setLoading(false);
 
       if (!unmounted) {
         setUsers(data);
