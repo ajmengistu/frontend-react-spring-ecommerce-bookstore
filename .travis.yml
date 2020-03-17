@@ -29,8 +29,6 @@ script:
 # Deploy 
 deploy:
     provider: heroku
-    skip_cleanup: true
-    keep-history: true
     api-key:
         secure: 2ce30bfa-0cd5-4d96-9d6b-08fae54942bd
     app: frontend-bookstore-react-sp
