@@ -57,7 +57,7 @@ const Home = () => {
   return (
     <>
       <div className="container mt-4">
-        <h4> This is the home page!</h4>
+        <h4> This is the home page! {process.env.REACT_APP_REMOTE_USER_API}</h4>
         <div>
           <ul data-testid="user-name">
             {users.map((user, index) => (
